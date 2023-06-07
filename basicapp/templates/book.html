@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+<div class="container">
+    
+
+    <div class="row">
+
+       <article class="col-md-6"><h2 ><u>Make a reservation:</u> </h2>
+        <p> Welcome to our booking page! We're excited to help you find the perfect furniture for your needs. Our easy-to-use booking form allows you to reserve your favorite items hassle-free. Simply provide your contact information, select the desired furniture pieces, and specify the preferred dates. Our team will promptly review your request and get in touch with you to confirm the booking details. Take advantage of our convenient booking process and secure your furniture today. We look forward to serving you!</p><img src="https://cloudbeds-fcfc.kxcdn.com/wp-content/uploads/2022/05/iStock-1068158510-scaled-e1669046834676.jpg" class="img-thumbnail">
+        
+        </article>
+
+        <article class="col-md-6">
+      
+          <form action="{% url 'home'%}" method="post">
+            {% csrf_token %}
+            
+            {{form.as_p}}
+            <input type="submit" id="button">
+          </form>
+        </article>
+        </div>
+        </div>
+</section>
+{% endblock %}
