@@ -40,7 +40,7 @@ class Booking(models.Model):
     first_name = models.CharField(max_length=200)    
     last_name = models.CharField(max_length=200)
     contact_number = models.CharField(max_length=10)
-    email=models.EmailField()
+    email=models.EmailField(blank=True, null=True)
     district=models.CharField(max_length=50,choices=districtChoices)
     localAddress=models.CharField(max_length=50)
     interested_item = models.CharField(max_length=100,)

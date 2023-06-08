@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from basicapp.models import *
 from basicapp.forms import BookingForm
 
@@ -30,6 +30,7 @@ def book(request):
         form = BookingForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('home')
     context = {'form':form}
     return render(request, 'book.html',context)
 
