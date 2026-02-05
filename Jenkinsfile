@@ -64,7 +64,6 @@ pipeline {
             -e "envHost=devserver"
              '''
             }
-        }
         post {
             success {
                 echo "Application deployed successfully to Dev Environment!"
@@ -73,6 +72,7 @@ pipeline {
                 echo "Deployment to Dev Environment failed."
             }
         }
+    }
 
 }
 }
