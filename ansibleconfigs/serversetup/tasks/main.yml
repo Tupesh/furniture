@@ -1,0 +1,43 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for serversetup
+- name: Install required packages
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: present
+    update_cache: true
+
+- name: Add Docker’s official GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Install Docker
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: Pulling app image
+  community.docker.docker_image_pull:
+    name: "{{ imageName }}"
+    tag: "{{ tagName }}"
+
+- name: Creating and running container
+  community.docker.docker_container:
+    name: appcontainer
+    image: "{{ imageName }}:{{ tagName }}"
+    state: started
+    restart_policy: always
+    ports:
+      - "8000:8000"
+

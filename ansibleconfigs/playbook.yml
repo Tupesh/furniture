@@ -1,0 +1,8 @@
+---
+# Configuring wordpress server 
+
+- name: Deploymeent in dev server
+  hosts: "{{ hostEnv }}"
+  become: true
+  roles:
+    - serversetup
