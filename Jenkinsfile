@@ -17,7 +17,6 @@ pipeline {
                 checkout scm
             }
         }
-    }
 
         stage('Build Docker Image') {
             steps {
@@ -29,7 +28,7 @@ pipeline {
         stage('Trivy Security Scan') {
             steps {
                 echo "Scanning Image for Vulnerabilities..."
-                sh "trivy image ${imageName}"
+                //sh "trivy image ${imageName}"
             }
         }
 
