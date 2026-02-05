@@ -26,11 +26,13 @@
     name: docker-ce
     state: latest
     update_cache: true
-
-- name: Pulling app image
-  community.docker.docker_image_pull:
+    
+- name: Pull image (force)
+  community.docker.docker_image:
     name: "{{ imageName }}"
     tag: "{{ tagName }}"
+    source: pull
+    force_source: true
 
 - name: Creating and running container
   community.docker.docker_container:
