@@ -11,13 +11,7 @@ pipeline {
         // Timeout counter starts AFTER agent is allocated
         timeout(time: 1, unit: 'SECONDS')
     }
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
+    stages { 
         stage('Build Docker Image') {
             steps {
                 echo "Creating Docker Image..."
