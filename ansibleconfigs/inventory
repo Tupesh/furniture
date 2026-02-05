@@ -1,6 +1,9 @@
-[dev]
 devserver ansible_hosts=192.168.56.22 ansible_ssh_user=vagrant ansible_ssh_password=vagrant
 
-[prod]
 prodserver ansible_hosts=192.168.56.23 ansible_ssh_user=vagrant ansible_ssh_password=vagrant
 
+[dev]
+devserver
+
+[prod]
+prodserver
