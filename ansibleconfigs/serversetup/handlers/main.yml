@@ -12,10 +12,6 @@
     recreate: true
     image_name_mismatch: recreate
 
-- name: Prune everything
-  community.docker.docker_prune:
-    containers: true
-    images: true
-    networks: true
-    volumes: true
-    builder_cache: true
+- name: Remove earlier image
+  community.docker.docker_image_remove:
+    name: "{{ imageName }}:{{ tagName | int - 1 }}"
