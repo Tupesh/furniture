@@ -6,6 +6,7 @@ pipeline {
         imagetag      = "${BUILD_NUMBER}"
         imageName     = "${dockerhubUser}/${appName}:${imagetag}"
         devIp         = '192.168.56.22'
+        prodIp        = '192.168.56.23'
     }
 
     stages { 
@@ -70,6 +71,35 @@ pipeline {
             }
             failure {
                 echo "Deployment to Dev Environment failed."
+            }
+
+        }
+    }
+
+      stage("Deploy to prod") {
+        agent {
+            node {
+                label 'dev-prod-manger'
+            }
+        }
+        steps {
+            timeout(time:1, unit:'MINUTES'){
+                 input message: 'Approve Production deployment?'
+                 }
+            echo "Deploying to prod Environment..."
+            sh '''
+            ansible-playbook -i ansibleconfigs/inventory ansibleconfigs/playbook.yml -l prod \
+            -e "imageName=$dockerhubUser/$appName" \
+            -e "tagName=$imagetag"
+            '''
+            }
+        post {
+            success {
+                echo "Application deployed successfully to prod Environment!"
+                echo "Check at http://${prodIp}:8000"
+            }
+            failure {
+                echo "Deployment to prod Environment failed."
             }
 
         }
