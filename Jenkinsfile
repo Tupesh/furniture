@@ -1,6 +1,4 @@
-pipeline {
-    agent any
-    
+pipeline {    
     environment {
         dockerhubUser = 'tupeshg' 
         appName       = 'furnitureapp'
@@ -49,6 +47,30 @@ pipeline {
         }
       }
     }
+    stage("Deploy to dev") {
+        agent {
+            node {
+                label 'dev-prod-manger'
+            }
+        }
+        steps {
+            echo "Deploying to Dev Environment..."
+            sh '''
+            ansible-playbook -m playbook.yml"\
+            -e "dockerImage=${env.imageName}" \
+            -e "tag=${env.imagetag}"\
+            -e "envHost=devserver"
+             '''
+            }
+        }
+        post {
+            success {
+                echo "Application deployed successfully to Dev Environment!"
+            }
+            failure {
+                echo "Deployment to Dev Environment failed."
+            }
+        }
 
 }
 }
