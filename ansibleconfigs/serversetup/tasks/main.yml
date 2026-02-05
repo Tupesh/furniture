@@ -32,11 +32,6 @@
     name: "{{ imageName }}"
     tag: "{{ tagName }}"
 
-- name: Trigger redeploy if image changed
-  ansible.builtin.meta: flush_handlers
-  when: pulled.changed
-  notify: Recreate app container
-
 - name: Creating and running container
   community.docker.docker_container:
     name: appcontainer
@@ -45,4 +40,3 @@
     restart_policy: always
     ports:
       - "8000:8000"
-
