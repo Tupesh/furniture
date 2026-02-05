@@ -57,7 +57,7 @@ pipeline {
         steps {
             echo "Deploying to Dev Environment..."
             sh '''
-            ansible-playbook -m playbook.yml \
+            ansible-playbook playbook.yml \
             -e "imageName=${env.dockerhubUser}/${env.appName}" \
             -e "tagName=${env.imagetag}"\
             -e "hostEnv=devserver"
