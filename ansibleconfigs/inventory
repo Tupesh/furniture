@@ -1,3 +1,5 @@
+# ssh-keygen -t ed25519 -C ansible -f ~/.ssh/ansible_key | generate ssh key
+#ssh-copy-id -i ~/.ssh/ansible_key.pub vagrant@192.168.56.22 | copy public key to dev server
 devserver ansible_host=192.168.56.22 ansible_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/ansible_key
 
 
