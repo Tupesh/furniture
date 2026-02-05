@@ -57,7 +57,7 @@ pipeline {
         steps {
             echo "Deploying to Dev Environment..."
             sh '''
-            source ./virtualenv/bin/activate 
+            . ./virtualenv/bin/activate 
             ansible-playbook -m playbook.yml \
             -e "imageName=${env.dockerhubUser}/${env.appName}" \
             -e "tagName=${env.imagetag}"\
