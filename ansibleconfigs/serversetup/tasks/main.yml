@@ -27,18 +27,13 @@
     state: latest
     update_cache: true
     
-- name: Pull image (force)
+- name: Pull image
   community.docker.docker_image:
     name: "{{ imageName }}"
     tag: "{{ tagName }}"
     source: pull
     force_source: true
-
-- name: Creating and running container
-  community.docker.docker_container:
-    name: appcontainer
-    image: "{{ imageName }}:{{ tagName }}"
-    state: started
-    restart_policy: always
-    ports:
-      - "8000:8000"
+  register: pulled
+  notify:
+    - Recreate app container
+    - Prune unused images

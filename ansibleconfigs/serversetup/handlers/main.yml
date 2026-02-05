@@ -6,7 +6,12 @@
     name: appcontainer
     image: "{{ imageName }}:{{ tagName }}"
     state: started
-    recreate: true
     restart_policy: always
     ports:
       - "8000:8000"
+    recreate: true
+    image_name_mismatch: recreate
+
+- name: Prune unused images
+  community.docker.docker_prune:
+    images: true
