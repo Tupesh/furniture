@@ -9,7 +9,6 @@
     restart_policy: always
     ports:
       - "8000:8000"
-    recreate: true
     image_name_mismatch: recreate
 
 - name: Remove earlier image
