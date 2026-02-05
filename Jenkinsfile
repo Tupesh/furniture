@@ -62,6 +62,7 @@ pipeline {
             -e "imageName=$dockerhubUser/$appName" \
             -e "tagName=$imagetag" \
             -e "hostEnv=devserver"
+            echo "$imagetag is the tag being deployed to dev environment" 
              '''
             }
         post {
