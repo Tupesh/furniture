@@ -59,7 +59,7 @@ pipeline {
             sh '''
             source ./virtualenv/bin/activate 
             ansible-playbook -m playbook.yml \
-            -e "imageName=${env.imageName}" \
+            -e "imageName=${env.dockerhubUser}/${env.appName}" \
             -e "tagName=${env.imagetag}"\
             -e "hostEnv=devserver"
              '''
