@@ -58,12 +58,10 @@ pipeline {
         steps {
             echo "Deploying to Dev Environment..."
             sh '''
-            ansible-playbook ansibleconfigs/playbook.yml \
+            ansible-playbook -i ansibleconfigs/inventory ansibleconfigs/playbook.yml -l dev \
             -e "imageName=$dockerhubUser/$appName" \
-            -e "tagName=$imagetag" \
-            -e "hostEnv=devserver"
-            echo "$imagetag is the tag being deployed to dev environment" 
-             '''
+            -e "tagName=$imagetag"
+            '''
             }
         post {
             success {
