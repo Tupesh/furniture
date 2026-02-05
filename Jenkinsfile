@@ -5,6 +5,7 @@ pipeline {
         appName       = 'furnitureapp'
         imagetag      = "${BUILD_NUMBER}"
         imageName     = "${dockerhubUser}/${appName}:${imagetag}"
+        devIp         = '192.168.56.22'
     }
 
     stages { 
@@ -28,7 +29,7 @@ pipeline {
             }
             steps {
                 echo "Scanning Image for Vulnerabilities..."
-                //sh "trivy image ${imageName}"
+                sh "trivy image ${imageName}"
             }
         }
 
@@ -66,10 +67,12 @@ pipeline {
         post {
             success {
                 echo "Application deployed successfully to Dev Environment!"
+                echo "Check at http://${devIp}:8080"
             }
             failure {
                 echo "Deployment to Dev Environment failed."
             }
+
         }
     }
 
