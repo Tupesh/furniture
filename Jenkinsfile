@@ -13,6 +13,11 @@ pipeline {
     }
     stages { 
         stage('Build Docker Image') {
+            agent {
+                node {
+                    label 'docker-trivy-machine'
+                }
+            }
             steps {
                 echo "Creating Docker Image..."
                 sh "docker build -t ${imageName} ."
