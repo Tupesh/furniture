@@ -36,4 +36,4 @@
   register: pulled
   notify:
     - Recreate app container
-    - Prune unused images
+    - Prune unused containers and images

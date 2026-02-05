@@ -12,6 +12,7 @@
     recreate: true
     image_name_mismatch: recreate
 
-- name: Prune unused images
+- name: Prune unused containers and images
   community.docker.docker_prune:
+    containers: true
     images: true
