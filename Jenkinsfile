@@ -57,11 +57,11 @@ pipeline {
         steps {
             echo "Deploying to Dev Environment..."
             sh '''
-            source ./virtualenv/bin/activate \
+            source ./virtualenv/bin/activate 
             ansible-playbook -m playbook.yml \
-            -e "dockerImage=${env.imageName}" \
-            -e "tag=${env.imagetag}"\
-            -e "envHost=devserver"
+            -e "imageName=${env.imageName}" \
+            -e "tagName=${env.imagetag}"\
+            -e "hostEnv=devserver"
              '''
             }
         post {
