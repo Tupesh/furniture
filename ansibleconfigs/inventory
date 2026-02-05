@@ -1,4 +1,5 @@
-devserver ansible_hosts=192.168.56.22 ansible_ssh_user=vagrant ansible_ssh_password=vagrant
+devserver ansible_hosts=192.168.56.22 ansible_ssh_user=vagrant ansible_ssh_private_key_file=~/.ssh/ansible_key
+
 
 prodserver ansible_hosts=192.168.56.23 ansible_ssh_user=vagrant ansible_ssh_password=vagrant
 
