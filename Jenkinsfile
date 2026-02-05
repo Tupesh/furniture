@@ -1,4 +1,5 @@
 pipeline {    
+    agent any
     environment {
         dockerhubUser = 'tupeshg' 
         appName       = 'furnitureapp'
