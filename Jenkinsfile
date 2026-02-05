@@ -67,7 +67,7 @@ pipeline {
         post {
             success {
                 echo "Application deployed successfully to Dev Environment!"
-                echo "Check at http://${devIp}:8080"
+                echo "Check at http://${devIp}:8000"
             }
             failure {
                 echo "Deployment to Dev Environment failed."
