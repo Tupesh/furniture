@@ -25,6 +25,11 @@ pipeline {
         }
 
         stage('Trivy Security Scan') {
+            agent {
+                node {
+                    label 'docker-trivy-machine'
+                }
+            }
             steps {
                 echo "Scanning Image for Vulnerabilities..."
                 //sh "trivy image ${imageName}"
@@ -32,6 +37,11 @@ pipeline {
         }
 
         stage('Image Push') {
+            agent {
+                node {
+                    label 'docker-trivy-machine'
+                }
+            }
 	      steps {
         	script {
           	   docker.withRegistry('', 'dockercred') {
