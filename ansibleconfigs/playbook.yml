@@ -1,5 +1,5 @@
 ---
-# Configuring wordpress server 
+# Configuring Django server 
 
 - name: Deploymeent in dev server
   hosts: all
