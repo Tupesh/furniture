@@ -98,15 +98,3 @@ docker container stop app-container
 
 - `Jenkinsfile` builds a Docker image, runs a Trivy scan, pushes to Docker Hub, and deploys to dev/prod via Ansible.
 - Ansible entrypoint is `ansibleconfigs/playbook.yml` using `ansibleconfigs/inventory`.
-
-## Configuration notes
-
-- `DEBUG` is set to `True` and `ALLOWED_HOSTS` is `*` in `furniture/settings.py` for development.
-- `SECRET_KEY` is hardcoded; replace it for production deployments.
-- The default database is SQLite at `db.sqlite3`.
-
-## Tests
-
-```bash
-python manage.py test
-```
